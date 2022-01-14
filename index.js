@@ -9,7 +9,7 @@ let listOfExpensesContainer = document.getElementById("list-of-expenses-containe
 totalBudgetAmountContainer.innerText = `$${totalBudgetAmount}`;
 
 // Spending Entry Object Constructor
-function spendingEntry(entryName, entryAmount, entryType) {
+function SpendingEntry(entryName, entryAmount, entryType) {
     this.entryName = entryName;
     this.entryAmount = entryAmount;
     this.entryType = entryType;
@@ -20,12 +20,14 @@ document.addEventListener("click", (e) => {
     if (e.target.classList.contains("add-entry")) {
         let currentExpenseName = document.getElementsByClassName("expense-name")[0].value;
         let currentExpenseAmount = document.getElementsByClassName("expense-amount")[0].value;
+        currentExpenseAmount = Number(currentExpenseAmount); // Convert string to number
         let currentExpenseTypeValue = currentExpenseType.value;
-        let newExpenseEntry = new spendingEntry(currentExpenseName, currentExpenseAmount, currentExpenseTypeValue);
+        let newExpenseEntry = new SpendingEntry(currentExpenseName, currentExpenseAmount, currentExpenseTypeValue);
 
         listOfExpenses.push(newExpenseEntry);    
         subtractFromTotalBudgetAmount();
         printExpensesToPage();
+        calculateSpendingPercentages();
     }
 });
 
@@ -50,4 +52,56 @@ const printExpensesToPage = () => {
                 <button type="button" class="remove-btn btn fw-bolder text-secondary">&#10005;</button>
             </div>`
     });
+}
+
+// Remove an expense entry
+const removeExpenseEntry = () => {
+    let numberOfRemoveButtons = document.getElementsByClassName("remove-btn");
+
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-btn")) {
+            for (let i = 0; i < numberOfRemoveButtons.length; i++) {
+                if (e.target === numberOfRemoveButtons[i]) {
+                    listOfExpenses.splice(i, 1);
+                    subtractFromTotalBudgetAmount();
+                    printExpensesToPage();
+                    calculateSpendingPercentages();
+                } 
+            }
+        }
+    });
+}
+
+removeExpenseEntry();
+
+// Calculate percentages for spending bar graph
+const fixedSpendingProgressBar = document.getElementById("fixed-spending-progress-bar");
+const debtSpendingProgressBar = document.getElementById("debt-spending-progress-bar");
+
+const calculateSpendingPercentages = () => {
+    fixedSpendingProgressBar.style.width = "0%";
+    debtSpendingProgressBar.style.width = "0%";
+    let totalFixedSpendingAmount = 0;
+    let fixedSpendingPercentage = 0;
+    let totalDebtSpendingAmount = 0;
+    let debtSpendingPercentage = 0;
+
+    for (let i = 0; i < listOfExpenses.length; i++) {
+        if (listOfExpenses[i].entryType == "Fixed") {
+            totalFixedSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        fixedSpendingPercentage = calculatePercentage(totalFixedSpendingAmount);
+        fixedSpendingProgressBar.style.width = `${fixedSpendingPercentage}%`;
+        
+        if (listOfExpenses[i].entryType == "Debt") {
+            totalDebtSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
+        debtSpendingProgressBar.style.width = `${debtSpendingPercentage}%`;
+    }
+}
+
+// Function to calculate percentage of spending out of total budget amount (equation)
+function calculatePercentage(totalEntrySpendingAmount) {
+    return ((totalEntrySpendingAmount/totalBudgetAmount)*100);
 }
