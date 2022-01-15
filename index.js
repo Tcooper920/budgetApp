@@ -1,4 +1,4 @@
-const totalBudgetAmount = 100;
+let totalBudgetAmount = 100;
 let listOfExpenses = [];
 const addEntryButton = document.getElementsByClassName("add-entry");
 let totalBudgetAmountContainer = document.getElementById("total-budget-amount");
@@ -38,6 +38,12 @@ const subtractFromTotalBudgetAmount = () => {
         updatedBudgetAmount = updatedBudgetAmount - listOfExpenses[i].entryAmount;
     }
     totalBudgetAmountContainer.innerText = `$${updatedBudgetAmount}`;
+    
+    if (Math.sign(updatedBudgetAmount) == "-1") {
+        totalBudgetAmountContainer.classList.add("red");
+    } else {
+        totalBudgetAmountContainer.classList.remove("red");
+    }
 }
 
 // Function to print expenses to the page
@@ -77,14 +83,22 @@ removeExpenseEntry();
 // Calculate percentages for spending bar graph
 const fixedSpendingProgressBar = document.getElementById("fixed-spending-progress-bar");
 const debtSpendingProgressBar = document.getElementById("debt-spending-progress-bar");
+const savingsSpendingProgressBar = document.getElementById("savings-spending-progress-bar");
+const funSpendingProgressBar = document.getElementById("fun-spending-progress-bar");
+const otherSpendingProgressBar = document.getElementById("other-spending-progress-bar");
 
 const calculateSpendingPercentages = () => {
-    fixedSpendingProgressBar.style.width = "0%";
-    debtSpendingProgressBar.style.width = "0%";
+    resetBarGraph();
     let totalFixedSpendingAmount = 0;
     let fixedSpendingPercentage = 0;
     let totalDebtSpendingAmount = 0;
     let debtSpendingPercentage = 0;
+    let totalSavingsSpendingAmount = 0;
+    let savingsSpendingPercentage = 0;
+    let totalFunSpendingAmount = 0;
+    let funSpendingPercentage = 0;
+    let totalOtherSpendingAmount = 0;
+    let otherSpendingPercentage = 0;
 
     for (let i = 0; i < listOfExpenses.length; i++) {
         if (listOfExpenses[i].entryType == "Fixed") {
@@ -98,7 +112,34 @@ const calculateSpendingPercentages = () => {
         }
         debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
         debtSpendingProgressBar.style.width = `${debtSpendingPercentage}%`;
+
+        if (listOfExpenses[i].entryType == "Savings") {
+            totalSavingsSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        savingsSpendingPercentage = calculatePercentage(totalSavingsSpendingAmount);
+        savingsSpendingProgressBar.style.width = `${savingsSpendingPercentage}%`;
+
+        if (listOfExpenses[i].entryType == "Fun") {
+            totalFunSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        funSpendingPercentage = calculatePercentage(totalFunSpendingAmount);
+        funSpendingProgressBar.style.width = `${funSpendingPercentage}%`;
+
+        if (listOfExpenses[i].entryType == "Other") {
+            totalOtherSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        otherSpendingPercentage = calculatePercentage(totalOtherSpendingAmount);
+        otherSpendingProgressBar.style.width = `${otherSpendingPercentage}%`;
     }
+}
+
+// Function to reset spending bar graph values back to "0%"
+function resetBarGraph () {
+    fixedSpendingProgressBar.style.width = "0%";
+    debtSpendingProgressBar.style.width = "0%";
+    savingsSpendingProgressBar.style.width = "0%";
+    funSpendingProgressBar.style.width = "0%"
+    otherSpendingProgressBar.style.width = "0%";
 }
 
 // Function to calculate percentage of spending out of total budget amount (equation)
