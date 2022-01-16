@@ -8,6 +8,7 @@ let listOfExpensesContainer = document.getElementById("list-of-expenses-containe
 
 // Function to display total budget amount left
 function displayAmountLeftToBudgetWith(totalBudgetAmount) {
+    totalBudgetAmount = Number(totalBudgetAmount).toFixed(2); // Convert to number and round
     totalBudgetAmountContainer.innerText = `$${totalBudgetAmount} Remaining to budget with.`;
 }
 
@@ -17,7 +18,7 @@ displayAmountLeftToBudgetWith(totalBudgetAmount);
 totalBudgetAmountSubmittedField.addEventListener("input", () => {
     let totalBudgetAmountSubmittedFieldValue = totalBudgetAmountSubmittedField.value;
 
-    totalBudgetAmount = totalBudgetAmountSubmittedFieldValue;
+    totalBudgetAmount = totalBudgetAmountSubmittedFieldValue.replace(/,/g,'');
     displayAmountLeftToBudgetWith(totalBudgetAmount);
     subtractFromTotalBudgetAmount();
     printExpensesToPage();
