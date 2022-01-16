@@ -1,14 +1,30 @@
-let totalBudgetAmount = 100;
+let totalBudgetAmount = 0;
+let totalBudgetAmountSubmittedField = document.getElementById("budget-amount-field");
 let listOfExpenses = [];
 const addEntryButton = document.getElementsByClassName("add-entry");
 let totalBudgetAmountContainer = document.getElementById("total-budget-amount");
 const currentExpenseType = document.getElementsByClassName("expense-type")[0];
 let listOfExpensesContainer = document.getElementById("list-of-expenses-container");
 
-// Total Budget Amount Left
-totalBudgetAmountContainer.innerText = `$${totalBudgetAmount}`;
+// Function to display total budget amount left
+function displayAmountLeftToBudgetWith(totalBudgetAmount) {
+    totalBudgetAmountContainer.innerText = `$${totalBudgetAmount} Remaining to budget with.`;
+}
 
-// Spending Entry Object Constructor
+displayAmountLeftToBudgetWith(totalBudgetAmount);
+
+// User submits budget amount into the field
+totalBudgetAmountSubmittedField.addEventListener("input", () => {
+    let totalBudgetAmountSubmittedFieldValue = totalBudgetAmountSubmittedField.value;
+
+    totalBudgetAmount = totalBudgetAmountSubmittedFieldValue;
+    displayAmountLeftToBudgetWith(totalBudgetAmount);
+    subtractFromTotalBudgetAmount();
+    printExpensesToPage();
+    calculateSpendingPercentages();
+});
+
+// Expense Entry Object Constructor
 function SpendingEntry(entryName, entryAmount, entryType) {
     this.entryName = entryName;
     this.entryAmount = entryAmount;
@@ -37,8 +53,9 @@ const subtractFromTotalBudgetAmount = () => {
     for (let i = 0; i < listOfExpenses.length; i++) {
         updatedBudgetAmount = updatedBudgetAmount - listOfExpenses[i].entryAmount;
     }
-    totalBudgetAmountContainer.innerText = `$${updatedBudgetAmount}`;
+    displayAmountLeftToBudgetWith(updatedBudgetAmount);
     
+    // If amount left to budget is a negative number (over spending limit) then...
     if (Math.sign(updatedBudgetAmount) == "-1") {
         totalBudgetAmountContainer.classList.add("red");
     } else {

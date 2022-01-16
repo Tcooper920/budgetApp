@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="progress">
+<div class="progress container p-0">
 	<div id="fixed-spending-progress-bar" class="progress-bar light-blue" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 	<div id="debt-spending-progress-bar" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 	<div id="savings-spending-progress-bar" class="progress-bar light-green" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -18,17 +18,27 @@
 <div class="container" id="total-budget-amount">
 </div>
 
-<form class="container d-flex my-3 bg-light">
-	<input class="form-control m-2 ms-0 expense-name" type="text" placeholder="Expense Name" aria-label="Expense Name">
-	<input class="form-control m-2 ms-0 expense-amount" type="text" placeholder="0.00" aria-label="Expense Amount">
-	<select class="form-select m-2 mx-0 expense-type" aria-label="Default select example">
-		<option value="Fixed" selected>Fixed</option>
-		<option value="Debt">Debt</option>
-		<option value="Savings">Savings</option>
-		<option value="Fun">Fun</option>
-		<option value="Other">Other</option>
-	  </select>
-	<button type="button" class="add-entry btn btn-primary m-2 me-0 w-50">Add Expense</button>
+<form class="container d-flex flex-column my-3 bg-light">
+	<label>
+		Enter your monthly budget amount:
+		<input id="budget-amount-field" class="form-control m-2 ms-0" type="text" placeholder="0.00" aria-label="Total Budget Amount">
+	</label>
+</form>
+
+<form class="container d-flex flex-column my-3 bg-light">
+	<label for="expense" class="d-flex">Add an expense:</label>
+	<div class="d-flex">
+		<input id="expense" class="form-control m-2 ms-0 expense-name" type="text" placeholder="Expense Name" aria-label="Expense Name">
+		<input class="form-control m-2 ms-0 expense-amount" type="text" placeholder="0.00" aria-label="Expense Amount">
+		<select class="form-select m-2 mx-0 expense-type" aria-label="Type of Expense">
+			<option value="Fixed" selected>Fixed</option>
+			<option value="Debt">Debt</option>
+			<option value="Savings">Savings</option>
+			<option value="Fun">Fun</option>
+			<option value="Other">Other</option>
+	  	</select>
+		<button type="button" class="add-entry btn btn-primary m-2 me-0 w-50">Add Expense</button>
+	</div>
 </form>
 
 <div class="container">
