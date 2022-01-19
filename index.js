@@ -72,7 +72,7 @@ const printExpensesToPage = () => {
             <div class="container d-flex mt-3 bg-light rounded dark-blue">
                 <p class="d-block m-2 w-100">Name: <span class="fw-bold">${expenseItem.entryName}</span></p>
                 <p class="d-block m-2 w-100">Amount: <span class="fw-bold">$${expenseItem.entryAmount}</span></p>
-                <p class="d-block m-2 w-100">Type: <span class="fw-bold">${expenseItem.entryType}</span></p>
+                <p class="d-block m-2 w-100">Type: <span class="fw-bold ${expenseItem.entryType}">${expenseItem.entryType}</span></p>
                 <button type="button" class="remove-btn btn fw-bolder text-secondary">&#10005;</button>
             </div>`
     });
@@ -124,30 +124,35 @@ const calculateSpendingPercentages = () => {
         }
         fixedSpendingPercentage = calculatePercentage(totalFixedSpendingAmount);
         fixedSpendingProgressBar.style.width = `${fixedSpendingPercentage}%`;
+        fixedSpendingProgressBar.innerHTML = `<strong>${fixedSpendingPercentage}%</strong>`;
         
         if (listOfExpenses[i].entryType == "Debt") {
             totalDebtSpendingAmount += listOfExpenses[i].entryAmount;
         }
         debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
         debtSpendingProgressBar.style.width = `${debtSpendingPercentage}%`;
+        debtSpendingProgressBar.innerHTML = `<strong>${debtSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Savings") {
             totalSavingsSpendingAmount += listOfExpenses[i].entryAmount;
         }
         savingsSpendingPercentage = calculatePercentage(totalSavingsSpendingAmount);
         savingsSpendingProgressBar.style.width = `${savingsSpendingPercentage}%`;
+        savingsSpendingProgressBar.innerHTML = `<strong>${savingsSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Fun") {
             totalFunSpendingAmount += listOfExpenses[i].entryAmount;
         }
         funSpendingPercentage = calculatePercentage(totalFunSpendingAmount);
         funSpendingProgressBar.style.width = `${funSpendingPercentage}%`;
+        funSpendingProgressBar.innerHTML = `<strong>${funSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Other") {
             totalOtherSpendingAmount += listOfExpenses[i].entryAmount;
         }
         otherSpendingPercentage = calculatePercentage(totalOtherSpendingAmount);
         otherSpendingProgressBar.style.width = `${otherSpendingPercentage}%`;
+        otherSpendingProgressBar.innerHTML = `<strong>${otherSpendingPercentage}%</strong>`;
     }
 }
 
