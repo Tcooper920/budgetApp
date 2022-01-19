@@ -1,14 +1,14 @@
 /* Colors */
-.light-blue {
+.light-blue-background {
     background: #67bcff;
 }
-.light-green {
+.light-green-background {
     background: #83db87;
 }
-.light-yellow {
+.light-yellow-background {
     background: #f1e57d;
 }
-.light-gray {
+.light-gray-background {
     background: lightgray;
 }
 .red {
@@ -20,9 +20,14 @@
 .dark-blue {
     color: #2b3c4a;
 }
-.background-white {
+.white-background {
     background: white;
 }
 .white {
     color: white;
+}
+
+/* Spending breakdown graph ("progress" bar) */
+.progress {
+    height: 2rem;
 }
