@@ -31,3 +31,34 @@
 .progress {
     height: 2rem;
 }
+.progress strong {
+    text-shadow: 0px 0px 9px rgb(70 70 70 / 78%);
+    font-weight: bold;
+}
+
+/* "Expenses" boxes */
+
+/* Spending Type Text */
+.Fixed::after, .Debt::after, .Savings::after, .Fun::after, .Other::after {
+    padding-right: 0.5rem;
+}
+.Fixed::after {
+    content: "";
+    border-right: 1rem solid #f1e57d;
+}
+.Debt::after {
+    content: "";
+    border-right: 1rem solid #dc3545;
+}
+.Savings::after {
+    content: "";
+    border-right: 1rem solid #83db87;
+}
+.Fun::after {
+    content: "";
+    border-right: 1rem solid #f1e57d;
+}
+.Other::after {
+    content: "";
+    border-right: 1rem solid lightgray;
+}
