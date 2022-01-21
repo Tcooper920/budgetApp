@@ -44,7 +44,7 @@
 }
 .Fixed::after {
     content: "";
-    border-right: 1rem solid #f1e57d;
+    border-right: 1rem solid #67bcff;
 }
 .Debt::after {
     content: "";
