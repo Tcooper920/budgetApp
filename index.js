@@ -45,6 +45,7 @@ document.addEventListener("click", (e) => {
         subtractFromTotalBudgetAmount();
         printExpensesToPage();
         calculateSpendingPercentages();
+        sortExpenses();
     }
 });
 
@@ -90,6 +91,7 @@ const removeExpenseEntry = () => {
                     subtractFromTotalBudgetAmount();
                     printExpensesToPage();
                     calculateSpendingPercentages();
+                    sortExpenses();
                 } 
             }
         }
@@ -169,3 +171,29 @@ function resetBarGraph () {
 function calculatePercentage(totalEntrySpendingAmount) {
     return ((totalEntrySpendingAmount/totalBudgetAmount)*100);
 }
+
+// Sort expenses dropdown functionality
+const sortDropdown = document.getElementById("sort-expenses");
+
+const sortExpenses = () => {
+    let currentSortDropdownValue = sortDropdown.value;
+
+    // If user is sorting by expense "Type"...
+    if (currentSortDropdownValue == "Type") {
+        listOfExpenses.sort(function(a, b) {
+            let expenseA = a.entryType;
+            let expenseB = b.entryType;
+            if (expenseA < expenseB) {
+              return -1;
+            }
+            if (expenseA > expenseB) {
+              return 1;
+            }
+            return 0;
+        });
+    }
+    printExpensesToPage();
+}
+
+// If sort dropdown value changes, sort expenses...
+sortDropdown.addEventListener("change", sortExpenses);
