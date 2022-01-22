@@ -192,6 +192,20 @@ const sortExpenses = () => {
             return 0;
         });
     }
+    // If user is sorting by expense "Alphabetically"...
+    if (currentSortDropdownValue == "Alphabetically") {
+        listOfExpenses.sort(function(a, b) {
+            let expenseA = a.entryName.toLowerCase() ;
+            let expenseB = b.entryName.toLowerCase() ;
+            if (expenseA < expenseB) {
+              return -1;
+            }
+            if (expenseA > expenseB) {
+              return 1;
+            }
+            return 0;
+        });
+    }
     printExpensesToPage();
 }
 
