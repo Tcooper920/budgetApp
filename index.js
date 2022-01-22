@@ -70,7 +70,7 @@ const printExpensesToPage = () => {
     listOfExpensesContainer.innerHTML = "";
     listOfExpenses.forEach(expenseItem => {
         listOfExpensesContainer.innerHTML += `
-            <div class="container d-flex mt-3 bg-light rounded dark-blue">
+            <div class="container d-flex mb-3 bg-light rounded dark-blue">
                 <p class="d-block m-2 w-100">Name: <span class="fw-bold">${expenseItem.entryName}</span></p>
                 <p class="d-block m-2 w-100">Amount: <span class="fw-bold">$${expenseItem.entryAmount}</span></p>
                 <p class="d-block m-2 w-100">Type: <span class="fw-bold ${expenseItem.entryType}">${expenseItem.entryType}</span></p>
