@@ -1,3 +1,8 @@
+/* Fonts */
+body {
+    font-family: 'Outfit', sans-serif;
+}
+
 /* Colors */
 .light-blue-background {
     background: #67bcff;
@@ -16,6 +21,9 @@
 }
 .dark-blue-background {
     background: #2b3c4a;
+}
+.light-blue-background {
+    background: #55738b;
 }
 .dark-blue {
     color: #2b3c4a;
