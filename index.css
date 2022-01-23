@@ -84,3 +84,19 @@ body {
     content: "";
     border-right: 1rem solid lightgray;
 }
+
+/* Printing Media Queries */
+@media print {
+    .no-print{
+        display: none !important;
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+    h1, h2, h3 {
+        color: black;
+    }
+    .navy-blue-background {
+        background: white;
+    }
+  }

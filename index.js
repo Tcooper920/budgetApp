@@ -211,3 +211,10 @@ const sortExpenses = () => {
 
 // If sort dropdown value changes, sort expenses...
 sortDropdown.addEventListener("change", sortExpenses);
+
+// Export Budget as PDF button
+const printBudgetButton = document.getElementsByClassName("print-budget-btn")[0];
+
+printBudgetButton.addEventListener("click", () => {
+    window.print();
+});
