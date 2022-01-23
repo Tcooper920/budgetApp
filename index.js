@@ -70,7 +70,7 @@ const printExpensesToPage = () => {
     listOfExpensesContainer.innerHTML = "";
     listOfExpenses.forEach(expenseItem => {
         listOfExpensesContainer.innerHTML += `
-            <div class="container d-flex mb-3 bg-light rounded dark-blue">
+            <div class="container d-flex mb-3 bg-light rounded dark-blue expense-entry-block">
                 <p class="d-block m-2 w-100">Name: <span class="fw-bold">${expenseItem.entryName}</span></p>
                 <p class="d-block m-2 w-100">Amount: <span class="fw-bold">$${expenseItem.entryAmount}</span></p>
                 <p class="d-block m-2 w-100">Type: <span class="fw-bold ${expenseItem.entryType}">${expenseItem.entryType}</span></p>
@@ -82,16 +82,21 @@ const printExpensesToPage = () => {
 // Remove an expense entry
 const removeExpenseEntry = () => {
     let numberOfRemoveButtons = document.getElementsByClassName("remove-btn");
+    let numberOfExpenseEntryBlocks = document.getElementsByClassName("expense-entry-block");
 
     document.addEventListener("click", (e) => {
         if (e.target.classList.contains("remove-btn")) {
             for (let i = 0; i < numberOfRemoveButtons.length; i++) {
                 if (e.target === numberOfRemoveButtons[i]) {
+                    numberOfExpenseEntryBlocks[i].classList.add("fade-out");
                     listOfExpenses.splice(i, 1);
-                    subtractFromTotalBudgetAmount();
-                    printExpensesToPage();
-                    calculateSpendingPercentages();
-                    sortExpenses();
+                    // After block finishes fading out and array updates...
+                    setTimeout(() => { 
+                        subtractFromTotalBudgetAmount();
+                        printExpensesToPage();
+                        calculateSpendingPercentages();
+                        sortExpenses();
+                    }, 500);
                 } 
             }
         }

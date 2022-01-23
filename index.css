@@ -89,6 +89,12 @@ body {
     border-right: 1rem solid lightgray;
 }
 
+/* Fade out */
+.fade-out {
+    opacity: 0;
+    transition: opacity .5s;
+}
+
 /* Printing Media Queries */
 @media print {
     .no-print{
