@@ -3,6 +3,20 @@ body {
     font-family: 'Outfit', sans-serif;
 }
 
+/* Buttons */
+.btn-primary {
+    background:#f37b35;
+    border-color: #e16823;
+}
+.btn-primary:active {
+    background-color: #e16823;
+    border-color: #e16823;
+}
+.btn-primary:hover {
+    background-color: #e16823;
+    border-color: #e16823;
+}
+
 /* Colors */
 .light-blue-background {
     background: #67bcff;
@@ -20,10 +34,10 @@ body {
     color: #ff671b;
 }
 .dark-blue-background {
-    background: #2b3c4a;
+    background: #3d4fb7;
 }
-.light-blue-background {
-    background: #55738b;
+.navy-blue-background {
+    background: #00000030;
 }
 .dark-blue {
     color: #2b3c4a;
