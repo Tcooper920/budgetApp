@@ -11,9 +11,9 @@
 </head>
 <body class="dark-blue-background white">
 
-<nav class="nav p-2 white-background sticky-top shadow-sm">
+<nav class="nav p-2 white-background sticky-top shadow-sm no-print">
 	<div class="container p-0">
-		<button type="button" class="export-budget btn btn-primary m-2">Export Budget as PDF</button>
+		<button type="button" class="print-budget-btn btn btn-primary m-2">Print/Export Budget</button>
 	</div>
 </nav>
 
@@ -29,7 +29,7 @@
 		<div id="fun-spending-progress-bar" class="progress-bar light-yellow-background" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 		<div id="other-spending-progress-bar" class="progress-bar light-gray-background" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 	</div>
-	<div class="container fs-5 text mt-2" id="total-budget-amount"></div>
+	<div class="container fs-5 text mt-2 no-print" id="total-budget-amount"></div>
 </div>
 
 <form class="container fs-5 d-flex flex-column p-3 my-3 bg-light rounded dark-blue">
@@ -39,7 +39,7 @@
 	</label>
 </form>
 
-<form class="container fs-5 d-flex flex-column p-3 my-3 bg-light rounded dark-blue">
+<form class="container fs-5 d-flex flex-column p-3 my-3 bg-light rounded dark-blue no-print">
 	<label for="expense" class="d-flex">Add an expense:</label>
 	<div class="d-flex">
 		<input id="expense" class="form-control m-2 ms-0 expense-name" type="text" placeholder="Expense Name" aria-label="Expense Name">
@@ -61,11 +61,11 @@
 			<h2>Expenses</h2>
 		</div>
 		<form class="align-self-end ps-3">
-			<select id="sort-expenses" class="form-select m-2 mx-0 expense-type" aria-label="Sort Expenses">
+			<select id="sort-expenses" class="form-select m-2 mx-0 expense-type no-print" aria-label="Sort Expenses">
 				<option value="None" selected>Sort Expenses</option>
 				<option value="Type">Sort by Expense Type</option>
 				<option value="Alphabetically">Sort Alphabetically</option>
-			  </select>
+			</select>
 		</form>
 	</div>
 	<div id="list-of-expenses-container" class="p-3 pb-0 d-flex flex-column navy-blue-background rounded"></div>
