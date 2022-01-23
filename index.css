@@ -16,6 +16,10 @@ body {
     background-color: #e16823;
     border-color: #e16823;
 }
+.btn-primary:focus {
+    background-color: #e16823;
+    border-color: #e16823;
+}
 
 /* Colors */
 .light-blue-background {
