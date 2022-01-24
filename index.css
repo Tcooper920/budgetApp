@@ -38,7 +38,7 @@ body {
     color: #ff671b;
 }
 .dark-blue-background {
-    background: #3d4fb7;
+    background: #5d648d;
 }
 .navy-blue-background {
     background: #00000030;
@@ -109,4 +109,4 @@ body {
     .navy-blue-background {
         background: white;
     }
-  }
+}
