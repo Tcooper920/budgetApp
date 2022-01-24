@@ -174,7 +174,7 @@ function resetBarGraph () {
 
 // Function to calculate percentage of spending out of total budget amount (equation)
 function calculatePercentage(totalEntrySpendingAmount) {
-    return ((totalEntrySpendingAmount/totalBudgetAmount)*100);
+    return (((totalEntrySpendingAmount/totalBudgetAmount)*100).toFixed(2));
 }
 
 // Sort expenses dropdown functionality
