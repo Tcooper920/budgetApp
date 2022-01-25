@@ -131,6 +131,7 @@ const calculateSpendingPercentages = () => {
         }
         fixedSpendingPercentage = calculatePercentage(totalFixedSpendingAmount);
         fixedSpendingProgressBar.style.width = `${fixedSpendingPercentage}%`;
+        fixedSpendingProgressBar.ariaValueNow = fixedSpendingPercentage;
         fixedSpendingProgressBar.innerHTML = `<strong>${fixedSpendingPercentage}%</strong>`;
         
         if (listOfExpenses[i].entryType == "Debt") {
@@ -138,6 +139,7 @@ const calculateSpendingPercentages = () => {
         }
         debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
         debtSpendingProgressBar.style.width = `${debtSpendingPercentage}%`;
+        debtSpendingProgressBar.ariaValueNow = debtSpendingPercentage;
         debtSpendingProgressBar.innerHTML = `<strong>${debtSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Savings") {
@@ -145,6 +147,7 @@ const calculateSpendingPercentages = () => {
         }
         savingsSpendingPercentage = calculatePercentage(totalSavingsSpendingAmount);
         savingsSpendingProgressBar.style.width = `${savingsSpendingPercentage}%`;
+        savingsSpendingProgressBar.ariaValueNow = savingsSpendingPercentage;
         savingsSpendingProgressBar.innerHTML = `<strong>${savingsSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Fun") {
@@ -152,6 +155,7 @@ const calculateSpendingPercentages = () => {
         }
         funSpendingPercentage = calculatePercentage(totalFunSpendingAmount);
         funSpendingProgressBar.style.width = `${funSpendingPercentage}%`;
+        funSpendingProgressBar.ariaValueNow = funSpendingPercentage;
         funSpendingProgressBar.innerHTML = `<strong>${funSpendingPercentage}%</strong>`;
 
         if (listOfExpenses[i].entryType == "Other") {
@@ -159,6 +163,7 @@ const calculateSpendingPercentages = () => {
         }
         otherSpendingPercentage = calculatePercentage(totalOtherSpendingAmount);
         otherSpendingProgressBar.style.width = `${otherSpendingPercentage}%`;
+        otherSpendingProgressBar.ariaValueNow = otherSpendingPercentage;
         otherSpendingProgressBar.innerHTML = `<strong>${otherSpendingPercentage}%</strong>`;
     }
 }
