@@ -181,18 +181,12 @@ const calculateSpendingPercentages = () => {
 
 // Function to reset spending bar graph values back to "0%"
 function resetBarGraph () {
-    fixedSpendingProgressBar.style.width = "0%";
-    fixedSpendingProgressBar.ariaValueNow = 0;
-    variableSpendingProgressBar.style.width = "0%";
-    variableSpendingProgressBar.ariaValueNow = 0;
-    debtSpendingProgressBar.style.width = "0%";
-    debtSpendingProgressBar.ariaValueNow = 0;
-    savingsSpendingProgressBar.style.width = "0%";
-    savingsSpendingProgressBar.ariaValueNow = 0;
-    funSpendingProgressBar.style.width = "0%"
-    funSpendingProgressBar.ariaValueNow = 0;
-    otherSpendingProgressBar.style.width = "0%";
-    otherSpendingProgressBar.ariaValueNow = 0;
+    const listOfProgressBars = [...document.getElementsByClassName("progress-bar")];
+
+    listOfProgressBars.forEach(progressBar => {
+        progressBar.style.width = "0%";
+        progressBar.ariaValueNow = 0;
+    });
 }
 
 // Function to calculate percentage of spending out of total budget amount (equation)
