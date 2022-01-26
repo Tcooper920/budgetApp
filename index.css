@@ -52,6 +52,9 @@ body {
 .white {
     color: white;
 }
+.purple-background {
+    background: rgb(177 68 177);
+}
 
 /* Spending breakdown graph ("progress" bar) */
 .progress {
@@ -65,12 +68,16 @@ body {
 /* "Expenses" boxes */
 
 /* Spending Type Text */
-.Fixed::after, .Debt::after, .Savings::after, .Fun::after, .Other::after {
+.Fixed::after, .Variable::after, .Debt::after, .Savings::after, .Fun::after, .Other::after {
     padding-right: 0.5rem;
 }
 .Fixed::after {
     content: "";
     border-right: 1rem solid #67bcff;
+}
+.Variable::after {
+    content: "";
+    border-right: 1rem solid rgb(177 68 177);
 }
 .Debt::after {
     content: "";

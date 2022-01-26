@@ -107,6 +107,7 @@ removeExpenseEntry();
 
 // Calculate percentages for spending bar graph
 const fixedSpendingProgressBar = document.getElementById("fixed-spending-progress-bar");
+const variableSpendingProgressBar = document.getElementById("variable-spending-progress-bar");
 const debtSpendingProgressBar = document.getElementById("debt-spending-progress-bar");
 const savingsSpendingProgressBar = document.getElementById("savings-spending-progress-bar");
 const funSpendingProgressBar = document.getElementById("fun-spending-progress-bar");
@@ -116,6 +117,8 @@ const calculateSpendingPercentages = () => {
     resetBarGraph();
     let totalFixedSpendingAmount = 0;
     let fixedSpendingPercentage = 0;
+    let totalVariableSpendingAmount = 0;
+    let variableSpendingPercentage = 0;
     let totalDebtSpendingAmount = 0;
     let debtSpendingPercentage = 0;
     let totalSavingsSpendingAmount = 0;
@@ -133,6 +136,14 @@ const calculateSpendingPercentages = () => {
         fixedSpendingProgressBar.style.width = `${fixedSpendingPercentage}%`;
         fixedSpendingProgressBar.ariaValueNow = fixedSpendingPercentage;
         fixedSpendingProgressBar.innerHTML = `<strong>${fixedSpendingPercentage}%</strong>`;
+
+        if (listOfExpenses[i].entryType == "Variable") {
+            totalVariableSpendingAmount += listOfExpenses[i].entryAmount;
+        }
+        variableSpendingPercentage = calculatePercentage(totalVariableSpendingAmount);
+        variableSpendingProgressBar.style.width = `${variableSpendingPercentage}%`;
+        variableSpendingProgressBar.ariaValueNow = variableSpendingPercentage;
+        variableSpendingProgressBar.innerHTML = `<strong>${variableSpendingPercentage}%</strong>`;
         
         if (listOfExpenses[i].entryType == "Debt") {
             totalDebtSpendingAmount += listOfExpenses[i].entryAmount;
@@ -172,6 +183,8 @@ const calculateSpendingPercentages = () => {
 function resetBarGraph () {
     fixedSpendingProgressBar.style.width = "0%";
     fixedSpendingProgressBar.ariaValueNow = 0;
+    variableSpendingProgressBar.style.width = "0%";
+    variableSpendingProgressBar.ariaValueNow = 0;
     debtSpendingProgressBar.style.width = "0%";
     debtSpendingProgressBar.ariaValueNow = 0;
     savingsSpendingProgressBar.style.width = "0%";

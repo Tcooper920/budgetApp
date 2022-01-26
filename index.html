@@ -29,9 +29,10 @@
 				<div class="progress container p-0">
 					<div id="fixed-spending-progress-bar" class="progress-bar light-blue-background" role="progressbar"
 						style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+					<div id="variable-spending-progress-bar" class="progress-bar purple-background" role="progressbar"
+						style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 					<div id="debt-spending-progress-bar" class="progress-bar progress-bar-striped bg-danger"
-						role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-					</div>
+						role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 					<div id="savings-spending-progress-bar" class="progress-bar light-green-background"
 						role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 					</div>
@@ -60,6 +61,7 @@
 						aria-label="Expense Amount">
 					<select class="form-select m-2 mx-0 expense-type" aria-label="Type of Expense">
 						<option value="Fixed" selected>Fixed</option>
+						<option value="Variable">Variable</option>
 						<option value="Debt">Debt</option>
 						<option value="Savings">Savings</option>
 						<option value="Fun">Fun</option>
