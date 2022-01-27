@@ -70,11 +70,11 @@ const printExpensesToPage = () => {
     listOfExpensesContainer.innerHTML = "";
     listOfExpenses.forEach(expenseItem => {
         listOfExpensesContainer.innerHTML += `
-            <div class="container d-flex mb-3 bg-light rounded dark-blue expense-entry-block">
+            <div class="container d-flex flex-column flex-md-row position-relative mb-3 bg-light rounded dark-blue expense-entry-block">
                 <p class="d-block m-2 w-100 overflow-scroll">Name: <span class="fw-bold">${expenseItem.entryName}</span></p>
                 <p class="d-block m-2 w-100 overflow-scroll">Amount: <span class="fw-bold">$${expenseItem.entryAmount}</span></p>
                 <p class="d-block m-2 w-100">Type: <span class="fw-bold ${expenseItem.entryType}">${expenseItem.entryType}</span></p>
-                <button type="button" class="remove-btn btn fw-bolder text-secondary">&#10005;</button>
+                <button type="button" class="remove-btn btn fw-bolder text-secondary position-absolute end-0">&#10005;</button>
             </div>`
     });
 }
