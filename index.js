@@ -14,7 +14,7 @@ function displayAmountLeftToBudgetWith(totalBudgetAmount) {
 
 displayAmountLeftToBudgetWith(totalBudgetAmount);
 
-// User submits budget amount into the field
+// User submits budget amount into the field and current values will update
 totalBudgetAmountSubmittedField.addEventListener("input", () => {
     let totalBudgetAmountSubmittedFieldValue = totalBudgetAmountSubmittedField.value;
 
@@ -79,7 +79,7 @@ const printExpensesToPage = () => {
     });
 }
 
-// Remove an expense entry
+// Remove an expense entry by clicking the "X" icon
 const removeExpenseEntry = () => {
     let numberOfRemoveButtons = document.getElementsByClassName("remove-btn");
     let numberOfExpenseEntryBlocks = document.getElementsByClassName("expense-entry-block");
@@ -105,7 +105,7 @@ const removeExpenseEntry = () => {
 
 removeExpenseEntry();
 
-// Calculate percentages for spending bar graph
+// Calculate expense percentages and costs for spending bar graph
 const fixedSpendingProgressBar = document.getElementById("fixed-spending-progress-bar");
 const variableSpendingProgressBar = document.getElementById("variable-spending-progress-bar");
 const debtSpendingProgressBar = document.getElementById("debt-spending-progress-bar");
@@ -131,55 +131,38 @@ const calculateSpendingPercentages = () => {
     for (let i = 0; i < listOfExpenses.length; i++) {
         if (listOfExpenses[i].entryType == "Fixed") {
             totalFixedSpendingAmount += listOfExpenses[i].entryAmount;
+            fixedSpendingPercentage = calculatePercentage(totalFixedSpendingAmount);
+            addNumbersIntoBarGraph(fixedSpendingProgressBar, fixedSpendingPercentage, totalFixedSpendingAmount);
         }
-        fixedSpendingPercentage = calculatePercentage(totalFixedSpendingAmount);
-        fixedSpendingProgressBar.style.width = `${fixedSpendingPercentage}%`;
-        fixedSpendingProgressBar.ariaValueNow = fixedSpendingPercentage;
-        fixedSpendingProgressBar.innerHTML = `<strong>${fixedSpendingPercentage}%</strong>`;
-
         if (listOfExpenses[i].entryType == "Variable") {
             totalVariableSpendingAmount += listOfExpenses[i].entryAmount;
+            variableSpendingPercentage = calculatePercentage(totalVariableSpendingAmount);
+            addNumbersIntoBarGraph(variableSpendingProgressBar, variableSpendingPercentage, totalVariableSpendingAmount);
         }
-        variableSpendingPercentage = calculatePercentage(totalVariableSpendingAmount);
-        variableSpendingProgressBar.style.width = `${variableSpendingPercentage}%`;
-        variableSpendingProgressBar.ariaValueNow = variableSpendingPercentage;
-        variableSpendingProgressBar.innerHTML = `<strong>${variableSpendingPercentage}%</strong>`;
-        
         if (listOfExpenses[i].entryType == "Debt") {
             totalDebtSpendingAmount += listOfExpenses[i].entryAmount;
+            debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
+            addNumbersIntoBarGraph(debtSpendingProgressBar, debtSpendingPercentage, totalDebtSpendingAmount);
         }
-        debtSpendingPercentage = calculatePercentage(totalDebtSpendingAmount);
-        debtSpendingProgressBar.style.width = `${debtSpendingPercentage}%`;
-        debtSpendingProgressBar.ariaValueNow = debtSpendingPercentage;
-        debtSpendingProgressBar.innerHTML = `<strong>${debtSpendingPercentage}%</strong>`;
-
         if (listOfExpenses[i].entryType == "Savings") {
             totalSavingsSpendingAmount += listOfExpenses[i].entryAmount;
+            savingsSpendingPercentage = calculatePercentage(totalSavingsSpendingAmount);
+            addNumbersIntoBarGraph(savingsSpendingProgressBar, savingsSpendingPercentage, totalSavingsSpendingAmount);
         }
-        savingsSpendingPercentage = calculatePercentage(totalSavingsSpendingAmount);
-        savingsSpendingProgressBar.style.width = `${savingsSpendingPercentage}%`;
-        savingsSpendingProgressBar.ariaValueNow = savingsSpendingPercentage;
-        savingsSpendingProgressBar.innerHTML = `<strong>${savingsSpendingPercentage}%</strong>`;
-
         if (listOfExpenses[i].entryType == "Fun") {
             totalFunSpendingAmount += listOfExpenses[i].entryAmount;
+            funSpendingPercentage = calculatePercentage(totalFunSpendingAmount);
+            addNumbersIntoBarGraph (funSpendingProgressBar, funSpendingPercentage, totalFunSpendingAmount);
         }
-        funSpendingPercentage = calculatePercentage(totalFunSpendingAmount);
-        funSpendingProgressBar.style.width = `${funSpendingPercentage}%`;
-        funSpendingProgressBar.ariaValueNow = funSpendingPercentage;
-        funSpendingProgressBar.innerHTML = `<strong>${funSpendingPercentage}%</strong>`;
-
         if (listOfExpenses[i].entryType == "Other") {
             totalOtherSpendingAmount += listOfExpenses[i].entryAmount;
+            otherSpendingPercentage = calculatePercentage(totalOtherSpendingAmount);
+            addNumbersIntoBarGraph (otherSpendingProgressBar, otherSpendingPercentage, totalOtherSpendingAmount);
         }
-        otherSpendingPercentage = calculatePercentage(totalOtherSpendingAmount);
-        otherSpendingProgressBar.style.width = `${otherSpendingPercentage}%`;
-        otherSpendingProgressBar.ariaValueNow = otherSpendingPercentage;
-        otherSpendingProgressBar.innerHTML = `<strong>${otherSpendingPercentage}%</strong>`;
     }
 }
 
-// Function to reset spending bar graph values back to "0%"
+// Function to reset spending bar graph values back to "0%" and "$0"
 function resetBarGraph () {
     const listOfProgressBars = [...document.getElementsByClassName("progress-bar")];
 
@@ -192,6 +175,14 @@ function resetBarGraph () {
 // Function to calculate percentage of spending out of total budget amount (equation)
 function calculatePercentage(totalEntrySpendingAmount) {
     return (Math.round(((totalEntrySpendingAmount/totalBudgetAmount)*100)));
+}
+
+// Function to add expense percentages cost amounts into bar graph
+function addNumbersIntoBarGraph (progressBarId, spendingPercentage, totalSpendingAmount) {
+    progressBarId.style.width = `${spendingPercentage}%`;
+    progressBarId.ariaValueNow = spendingPercentage;
+    progressBarId.innerHTML = `<strong>${spendingPercentage}%</strong>`;
+    progressBarId.innerHTML += `<strong>$${totalSpendingAmount}</strong>`;
 }
 
 // Sort expenses dropdown functionality
