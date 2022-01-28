@@ -134,4 +134,7 @@ em {
     .navy-blue-background {
         background: white;
     }
+    .expense-entry-block {
+        flex-direction: row !important;
+    }
 }
