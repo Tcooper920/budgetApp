@@ -8,6 +8,16 @@ main {
     margin: 0 auto;
 }
 
+em {
+    color: #8f99dd;
+    font-weight: bold;
+}
+
+::marker {
+    color: #f37b35;
+    font-weight: bold;
+}
+
 /* Buttons */
 .btn-primary {
     background:#f37b35;
@@ -59,6 +69,9 @@ main {
 }
 .purple-background {
     background: rgb(177 68 177);
+}
+.light-navy {
+    color: #8f99dd;
 }
 
 /* Spending breakdown graph ("progress" bar) */
