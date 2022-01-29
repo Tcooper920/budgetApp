@@ -182,7 +182,7 @@ function addNumbersIntoBarGraph (progressBarId, spendingPercentage, totalSpendin
     progressBarId.style.width = `${spendingPercentage}%`;
     progressBarId.ariaValueNow = spendingPercentage;
     progressBarId.innerHTML = `<strong>${spendingPercentage}%</strong>`;
-    progressBarId.innerHTML += `<strong>$${totalSpendingAmount}</strong>`;
+    progressBarId.innerHTML += `<strong class="fs-6">$${totalSpendingAmount}</strong>`;
 }
 
 // Sort expenses dropdown functionality

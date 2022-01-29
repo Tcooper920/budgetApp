@@ -8,6 +8,14 @@ main {
     margin: 0 auto;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
 em {
     color: #8f99dd;
     font-weight: bold;
@@ -68,7 +76,7 @@ em {
     color: white;
 }
 .purple-background {
-    background: rgb(177 68 177);
+    background: rgb(203 91 203);
 }
 .light-navy {
     color: #8f99dd;
@@ -76,7 +84,7 @@ em {
 
 /* Spending breakdown graph ("progress" bar) */
 .progress {
-    height: 3rem;
+    height: 4rem;
 }
 .progress strong {
     text-shadow: 0px 0px 9px rgb(70 70 70 / 78%);
