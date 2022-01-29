@@ -145,4 +145,10 @@ em {
     .expense-entry-block {
         flex-direction: row !important;
     }
+    /* Expand graph when printed */
+    .progress {
+        height: auto;
+        flex-direction: column;
+        background: rgb(238, 238, 238);
+    }
 }
