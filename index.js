@@ -1,31 +1,38 @@
 let totalBudgetAmount = 0;
-let totalBudgetAmountSubmittedField = document.getElementById("budget-amount-field");
+const totalBudgetAmountSubmittedField = document.getElementById("budget-amount-field");
 let listOfExpenses = [];
 const addEntryButton = document.getElementsByClassName("add-entry");
-let totalBudgetAmountContainer = document.getElementById("total-budget-amount");
+const totalBudgetAmountContainer = document.getElementById("total-budget-amount");
+const expenseCostSubmittedField = document.getElementById("expense-amount");
 const currentExpenseType = document.getElementsByClassName("expense-type")[0];
-let listOfExpensesContainer = document.getElementById("list-of-expenses-container");
+const listOfExpensesContainer = document.getElementById("list-of-expenses-container");
 
-// Function to display total budget amount left
+// Function to display total budget amount left (in USD) under graph
 function displayAmountLeftToBudgetWith(totalBudgetAmount) {
-    totalBudgetAmount = Number(totalBudgetAmount).toFixed(2); // Convert to number and round
-    totalBudgetAmountContainer.innerText = `$${totalBudgetAmount} Remaining to budget with.`;
+    totalBudgetAmountContainer.innerHTML = `$${Number(totalBudgetAmount).toFixed(2)} Remaining to budget with.`;
 }
 
 displayAmountLeftToBudgetWith(totalBudgetAmount);
 
-// User submits budget amount into the field and current values will update
+// Function to validate input values (resticts input to 2 decimal places)
+function setTwoDecimalPlaces(event) {
+    this.value = parseFloat(this.value).toFixed(2);
+}
+
+totalBudgetAmountSubmittedField.onchange = setTwoDecimalPlaces;
+expenseCostSubmittedField.onchange = setTwoDecimalPlaces;
+
+// User submits budget amount into the field and current values will update across application
 totalBudgetAmountSubmittedField.addEventListener("input", () => {
     let totalBudgetAmountSubmittedFieldValue = totalBudgetAmountSubmittedField.value;
 
-    totalBudgetAmount = totalBudgetAmountSubmittedFieldValue.replace(/,/g,'');
-    displayAmountLeftToBudgetWith(totalBudgetAmount);
+    totalBudgetAmount = (Number(totalBudgetAmountSubmittedFieldValue).toFixed(2));
     subtractFromTotalBudgetAmount();
     printExpensesToPage();
     calculateSpendingPercentages();
 });
 
-// Expense Entry Object Constructor
+// Expense Entry Object Constructor - for creating expense items
 function SpendingEntry(entryName, entryAmount, entryType) {
     this.entryName = entryName;
     this.entryAmount = entryAmount;
@@ -58,7 +65,7 @@ const subtractFromTotalBudgetAmount = () => {
     displayAmountLeftToBudgetWith(updatedBudgetAmount);
     
     // If amount left to budget is a negative number (over spending limit) then...
-    if (Math.sign(updatedBudgetAmount) == "-1") {
+    if (updatedBudgetAmount < 0) {
         totalBudgetAmountContainer.classList.add("red");
     } else {
         totalBudgetAmountContainer.classList.remove("red");
@@ -79,7 +86,7 @@ const printExpensesToPage = () => {
     });
 }
 
-// Remove an expense entry by clicking the "X" icon
+// Remove an expense entry by clicking the "X" icon and recalculate values across application
 const removeExpenseEntry = () => {
     let numberOfRemoveButtons = document.getElementsByClassName("remove-btn");
     let numberOfExpenseEntryBlocks = document.getElementsByClassName("expense-entry-block");
@@ -105,7 +112,7 @@ const removeExpenseEntry = () => {
 
 removeExpenseEntry();
 
-// Calculate expense percentages and costs for spending bar graph
+// Calculate expense percentages and expense costs for 'Spending Breakdown' bar graph
 const fixedSpendingProgressBar = document.getElementById("fixed-spending-progress-bar");
 const variableSpendingProgressBar = document.getElementById("variable-spending-progress-bar");
 const debtSpendingProgressBar = document.getElementById("debt-spending-progress-bar");
@@ -174,15 +181,15 @@ function resetBarGraph () {
 
 // Function to calculate percentage of spending out of total budget amount (equation)
 function calculatePercentage(totalEntrySpendingAmount) {
-    return (Math.round(((totalEntrySpendingAmount/totalBudgetAmount)*100)));
+    return ((((totalEntrySpendingAmount/totalBudgetAmount)*100)).toFixed(2));
 }
 
-// Function to add expense percentages cost amounts into bar graph
+// Function to add expense percentages and cost amounts into bar graph
 function addNumbersIntoBarGraph (progressBarId, spendingPercentage, totalSpendingAmount) {
     progressBarId.style.width = `${spendingPercentage}%`;
     progressBarId.ariaValueNow = spendingPercentage;
-    progressBarId.innerHTML = `<strong>${spendingPercentage}%</strong>`;
-    progressBarId.innerHTML += `<strong class="fs-6">$${totalSpendingAmount}</strong>`;
+    progressBarId.innerHTML = `<strong>${parseFloat(spendingPercentage)}%</strong>`;
+    progressBarId.innerHTML += `<strong class="fs-6">$${totalSpendingAmount.toFixed(2)}</strong>`;
 }
 
 // Sort expenses dropdown functionality

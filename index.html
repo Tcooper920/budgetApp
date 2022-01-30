@@ -22,8 +22,8 @@
 				</div>
 				<div class="modal-body dark-blue">
 				  	<ol class="help-instructions">
-						<li>Enter your monthly income amount.</li>
-					  	<li class="mt-4">Enter your monthly expenses: Enter the expense name, enter the dollar amount, and select an expense type from the dropdown. (Expenses can be sorted by selecting an option from the <em>Sort Expenses</em> dropdown). Expenses can be deleted by clicking the <span class="light-navy">✕</span> next to each <em>Expenses</em> list item.</li>
+						<li>Enter your income amount. (monthly or biweekly)</li>
+					  	<li class="mt-4">Enter your expenses: Enter the expense name, enter the dollar amount, and select an expense type from the dropdown. (Expenses can be sorted by selecting an option from the <em>Sort Expenses</em> dropdown). Expenses can be deleted by clicking the <span class="light-navy">✕</span> next to each <em>Expenses</em> list item.</li>
 						<li class="mt-4">The graph will show a breakdown of your spending by expense type. Underneath the graph, you will see how much money you have left to budget with.</li>
 						<li class="mt-4">When you have no more money left to budget with, you can export your budget by clicking the <em>Print/Export Budget</em> button at the top.</li>
 					</ol>
@@ -52,7 +52,7 @@
 
 			<form class="container fs-5 d-flex flex-column p-3 my-3 bg-light rounded dark-blue">
 				<label>
-					Enter your monthly income amount:
+					Enter your income amount:
 					<input id="budget-amount-field" class="form-control m-2 ms-0" type="text" placeholder="0.00"
 						aria-label="Total Budget Amount">
 				</label>
@@ -63,7 +63,7 @@
 				<div class="d-flex flex-column flex-md-row">
 					<input id="expense" class="form-control m-2 ms-0 expense-name" type="text"
 						placeholder="Expense Name" aria-label="Expense Name">
-					<input class="form-control m-2 ms-0 expense-amount" type="text" placeholder="0.00"
+					<input id="expense-amount" class="form-control m-2 ms-0 expense-amount" type="text" placeholder="0.00"
 						aria-label="Expense Amount">
 					<select class="form-select m-2 mx-0 expense-type" aria-label="Type of Expense">
 						<option value="Fixed" selected>Fixed</option>
