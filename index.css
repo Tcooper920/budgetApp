@@ -85,6 +85,7 @@ em {
 /* Spending breakdown graph ("progress" bar) */
 .progress {
     height: 4rem;
+    background: #00000073;
 }
 .progress strong {
     text-shadow: 0px 0px 9px rgb(70 70 70 / 78%);
@@ -128,6 +129,21 @@ em {
     transition: opacity .5s;
 }
 
+/* Reformat graph when 'Enlarge Graph' button is clicked (this class is added with js) */
+.reformat-graph {
+    height: auto;
+    flex-direction: column;
+}
+.reformat-graph .progress-bar {
+    overflow: visible;
+}
+.reformat-graph .progress-bar .graph-spending-percentage {
+    margin-top: .8rem;
+}
+.reformat-graph .progress-bar .graph-spending-amount {
+    margin-bottom: .8rem;
+}
+
 /* Printing Media Queries */
 @media print {
     .no-print{
@@ -150,5 +166,14 @@ em {
         height: auto;
         flex-direction: column;
         background: rgb(238, 238, 238);
+    }
+    .progress-bar {
+        overflow: visible;
+    }
+    .progress-bar .graph-spending-percentage {
+        margin-top: .8rem;
+    }
+    .progress-bar .graph-spending-amount {
+        margin-bottom: .8rem;
     }
 }

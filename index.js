@@ -176,6 +176,7 @@ function resetBarGraph () {
     listOfProgressBars.forEach(progressBar => {
         progressBar.style.width = "0%";
         progressBar.ariaValueNow = 0;
+        progressBar.innerText = "";
     });
 }
 
@@ -188,9 +189,21 @@ function calculatePercentage(totalEntrySpendingAmount) {
 function addNumbersIntoBarGraph (progressBarId, spendingPercentage, totalSpendingAmount) {
     progressBarId.style.width = `${spendingPercentage}%`;
     progressBarId.ariaValueNow = spendingPercentage;
-    progressBarId.innerHTML = `<strong>${parseFloat(spendingPercentage)}%</strong>`;
-    progressBarId.innerHTML += `<strong class="fs-6">$${totalSpendingAmount.toFixed(2)}</strong>`;
+    progressBarId.innerHTML = `<strong class="graph-spending-percentage">${parseFloat(spendingPercentage)}%</strong>`;
+    progressBarId.innerHTML += `<strong class="fs-6 graph-spending-amount">$${totalSpendingAmount.toFixed(2)}</strong>`;
 }
+
+// 'Enlarge Graph' button functionality
+const enlargeGraphButton = document.getElementById("enlarge-graph-btn");
+const graph = document.getElementById("graph");
+
+enlargeGraphButton.addEventListener("click", () => {
+    if (graph.classList.contains("reformat-graph")) {
+        graph.classList.remove("reformat-graph");
+    } else {
+        graph.classList.add("reformat-graph");
+    }
+});
 
 // Sort expenses dropdown functionality
 const sortDropdown = document.getElementById("sort-expenses");
