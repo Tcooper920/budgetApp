@@ -7,9 +7,16 @@ const expenseCostSubmittedField = document.getElementById("expense-amount");
 const currentExpenseType = document.getElementsByClassName("expense-type")[0];
 const listOfExpensesContainer = document.getElementById("list-of-expenses-container");
 
+// Disable submit on first form (where user enters income)
+const enterIncomeForm = document.getElementById("enter-income-form");
+
+enterIncomeForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+
 // Function to display total budget amount left (in USD) under graph
 function displayAmountLeftToBudgetWith(totalBudgetAmount) {
-    totalBudgetAmountContainer.innerHTML = `$${Number(totalBudgetAmount).toFixed(2)} Remaining to budget with.`;
+    totalBudgetAmountContainer.innerHTML = `$${totalBudgetAmount} Remaining to budget with.`;
 }
 
 displayAmountLeftToBudgetWith(totalBudgetAmount);
@@ -62,6 +69,8 @@ const subtractFromTotalBudgetAmount = () => {
     for (let i = 0; i < listOfExpenses.length; i++) {
         updatedBudgetAmount = updatedBudgetAmount - listOfExpenses[i].entryAmount;
     }
+    updatedBudgetAmount = Number(updatedBudgetAmount).toFixed(2);
+
     displayAmountLeftToBudgetWith(updatedBudgetAmount);
     
     // If amount left to budget is a negative number (over spending limit) then...
