@@ -71,6 +71,11 @@ const subtractFromTotalBudgetAmount = () => {
     }
     updatedBudgetAmount = Number(updatedBudgetAmount).toFixed(2);
 
+    if (updatedBudgetAmount == -0) {
+        // Prevent negative zero values
+        updatedBudgetAmount = (updatedBudgetAmount * -0)
+    }
+
     displayAmountLeftToBudgetWith(updatedBudgetAmount);
     
     // If amount left to budget is a negative number (over spending limit) then...
